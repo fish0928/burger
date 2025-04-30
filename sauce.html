@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seasoning Zone – Add Sauce</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; text-align: center; }
+    button { margin: 10px; padding: 8px 16px; }
+    img { display: block; margin: 20px auto; width: 150px; }
+  </style>
+</head>
+<body>
+  <h1>Seasoning Zone</h1>
+  <p>The customer hates spicy. Add hot sauce?</p>
+
+  <img id="pourImg" src="static/pour.png" style="display:none;" alt="Pouring Sauce">
+
+  <audio id="pourSound" src="static/pour.mp3"></audio>
+
+  <button onclick="pour('no')">No</button>
+  <button onclick="pour('yes')">Yes</button>
+
+  <p><a href="index.html">← Back to Map</a></p>
+
+  <script>
+    function pour(ans) {
+      if (ans === 'yes') {
+        const img = document.getElementById('pourImg');
+        img.style.display = 'block';
+        document.getElementById('pourSound').play();
+        setTimeout(() => window.location.href = 'index.html', 2000);
+      } else {
+        alert('No sauce added.');
+        window.location.href = 'map.html';
+      }
+    }
+  </script>
+</body>
+</html>

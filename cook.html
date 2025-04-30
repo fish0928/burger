@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stove Zone – Cook Patty</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; text-align: center; }
+    button { padding: 10px 20px; margin: 20px; }
+    img { display: block; margin: 20px auto; width: 200px; }
+    #msg { font-size: 1.2em; }
+  </style>
+</head>
+<body>
+  <h1>Stove Zone</h1>
+  <p>Click “Start Cooking” then “Stop Cooking” at the right time (10–20s).</p>
+  <button id="actionBtn">Start Cooking</button>
+  <p id="msg"></p>
+  <img id="pattyImg" src="" alt="" style="display:none;">
+
+  <audio id="sndSuccess" src="static/success.mp3"></audio>
+  <audio id="sndFail"    src="static/fail.mp3"></audio>
+
+ <p><a href="index.html">← Back to Map</a></p>
+
+  <script>
+    const btn = document.getElementById('actionBtn');
+    const msg = document.getElementById('msg');
+    const img = document.getElementById('pattyImg');
+    const sndSuccess = document.getElementById('sndSuccess');
+    const sndFail    = document.getElementById('sndFail');
+    let startTime = null;
+
+    btn.onclick = () => {
+      if (!startTime) {
+        startTime = Date.now();
+        btn.textContent = 'Stop Cooking';
+        msg.textContent = 'Cooking... 🔥';
+        img.style.display = 'none';
+      } else {
+        const elapsed = Date.now() - startTime;
+        startTime = null;
+        btn.textContent = 'Start Cooking';
+
+        let text, src, sound;
+        if (elapsed < 10000) {
+          text = `Too quick (${(elapsed/1000).toFixed(1)}s)! Undercooked.`;
+          src  = 'static/undercooked.png';
+          sound = null;
+        } else if (elapsed <= 20000) {
+          text = `Perfect! (${(elapsed/1000).toFixed(1)}s)`;
+          src  = 'static/cooked.png';
+          sound = sndSuccess;
+        } else {
+          text = `Oops… (${(elapsed/1000).toFixed(1)}s) Burnt.`;
+          src  = 'static/burnt.png';
+          sound = sndFail;
+        }
+
+        msg.textContent = text;
+        img.src = src;
+        img.style.display = 'block';
+        if (sound) sound.play();
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fridge Zone – Select Ingredients</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    label { display: block; margin: 8px 0; }
+    #preview img { width: 100px; margin: 5px; }
+    button { margin-top: 15px; padding: 8px 12px; }
+  </style>
+</head>
+<body>
+  <h1>Fridge Zone</h1>
+  <p><strong>Burger Bun</strong> and <strong>Meat Patty</strong> are already included.</p>
+  <p>Select exactly 2 more ingredients:</p>
+
+  <form id="form">
+    <label><input type="checkbox" name="ing" value="Tomato"> Tomato</label>
+    <label><input type="checkbox" name="ing" value="Cheese"> Cheese</label>
+    <label><input type="checkbox" name="ing" value="Lettuce"> Lettuce</label>
+    <label><input type="checkbox" name="ing" value="Cucumber"> Cucumber</label>
+  </form>
+
+  <div id="preview"></div>
+
+  <audio id="confirmSound" src="static/confirm.mp3"></audio>
+
+  <button type="button" onclick="submitForm()">Submit</button>
+  <p><a href="index.html">← Back to Map</a></p>
+
+  <script>
+    function submitForm() {
+      const fixed = ['Burger Bun', 'Meat Patty'];
+      const selected = Array.from(
+        document.querySelectorAll('input[name="ing"]:checked')
+      ).map(cb => cb.value);
+
+      if (selected.length !== 2) {
+        alert('Please pick exactly 2 additional ingredients.');
+        return;
+      }
+
+      const combo = [...fixed, ...selected];
+      localStorage.setItem('ingredients', JSON.stringify(combo));
+
+      const preview = document.getElementById('preview');
+      preview.innerHTML = '';
+      combo.forEach(item => {
+        const img = document.createElement('img');
+        const filename = 'static/' + item.toLowerCase().replace(/ /g, '_') + '.png';
+        img.src = filename;
+        img.alt = item;
+        preview.appendChild(img);
+      });
+
+      document.getElementById('confirmSound').play();
+    }
+  </script>
+</body>
+</html>
