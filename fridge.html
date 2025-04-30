@@ -4,10 +4,36 @@
   <meta charset="UTF-8">
   <title>Fridge Zone – Select Ingredients</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    label { display: block; margin: 8px 0; }
-    #preview img { width: 100px; margin: 5px; }
-    button { margin-top: 15px; padding: 8px 12px; }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-image: url('static/A_2D_digital_illustration_features_a_semi-transpar.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px #000000;
+      font-size: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+      font-size: 24px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      font-size: 20px;
+    }
+
+    img {
+      vertical-align: middle;
+      width: 60px;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
@@ -16,18 +42,16 @@
   <p>Select exactly 2 more ingredients:</p>
 
   <form id="form">
-    <label><input type="checkbox" name="ing" value="Tomato"> Tomato</label>
-    <label><input type="checkbox" name="ing" value="Cheese"> Cheese</label>
-    <label><input type="checkbox" name="ing" value="Lettuce"> Lettuce</label>
-    <label><input type="checkbox" name="ing" value="Cucumber"> Cucumber</label>
+    <label><input type="checkbox" name="ing" value="Tomato"> Tomato <img src="static/tomato.png" alt="Tomato"></label>
+    <label><input type="checkbox" name="ing" value="Cheese"> Cheese <img src="static/cheese.png" alt="Cheese"></label>
+    <label><input type="checkbox" name="ing" value="Lettuce"> Lettuce <img src="static/lettuce.png" alt="Lettuce"></label>
+    <label><input type="checkbox" name="ing" value="Cucumber"> Cucumber <img src="static/cucumber.png" alt="Cucumber"></label>
   </form>
-
-  <div id="preview"></div>
 
   <audio id="confirmSound" src="static/confirm.mp3"></audio>
 
   <button type="button" onclick="submitForm()">Submit</button>
-  <p><a href="index.html">← Back to Map</a></p>
+  <p><a href="index.html" style="color: #ffeb3b; font-weight: bold;">← Back to Map</a></p>
 
   <script>
     function submitForm() {
@@ -43,17 +67,6 @@
 
       const combo = [...fixed, ...selected];
       localStorage.setItem('ingredients', JSON.stringify(combo));
-
-      const preview = document.getElementById('preview');
-      preview.innerHTML = '';
-      combo.forEach(item => {
-        const img = document.createElement('img');
-        const filename = 'static/' + item.toLowerCase().replace(/ /g, '_') + '.png';
-        img.src = filename;
-        img.alt = item;
-        preview.appendChild(img);
-      });
-
       document.getElementById('confirmSound').play();
     }
   </script>
