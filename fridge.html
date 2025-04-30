@@ -4,35 +4,78 @@
   <meta charset="UTF-8">
   <title>Fridge Zone – Select Ingredients</title>
   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
     body {
       font-family: sans-serif;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       background-image: url('static/A_2D_digital_illustration_features_a_semi-transpar.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: #ffffff;
-      text-shadow: 1px 1px 3px #000000;
-      font-size: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      font-size: 26px;
+    }
+
+    h1 {
+      font-size: 56px;
+      margin: 0 0 20px;
+    }
+
+    p {
+      font-size: 28px;
+      margin: 10px 0;
+    }
+
+    form {
+      margin: 20px 0;
     }
 
     label {
       display: block;
-      margin: 10px 0;
-      font-size: 24px;
+      margin: 12px 0;
+      font-size: 28px;
+    }
+
+    label img {
+      vertical-align: middle;
+      width: 70px;
+      margin-left: 12px;
     }
 
     button {
-      margin-top: 15px;
-      padding: 10px 15px;
-      font-size: 20px;
+      padding: 14px 20px;
+      font-size: 28px;
+      margin: 20px 0;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: rgba(0,0,0,0.6);
+      color: #ffeb3b;
     }
 
-    img {
-      vertical-align: middle;
-      width: 60px;
-      margin-left: 10px;
+    button:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    a {
+      font-size: 24px;
+      color: #ffeb3b;
+      text-decoration: none;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -42,16 +85,28 @@
   <p>Select exactly 2 more ingredients:</p>
 
   <form id="form">
-    <label><input type="checkbox" name="ing" value="Tomato"> Tomato <img src="static/tomato.png" alt="Tomato"></label>
-    <label><input type="checkbox" name="ing" value="Cheese"> Cheese <img src="static/cheese.png" alt="Cheese"></label>
-    <label><input type="checkbox" name="ing" value="Lettuce"> Lettuce <img src="static/lettuce.png" alt="Lettuce"></label>
-    <label><input type="checkbox" name="ing" value="Cucumber"> Cucumber <img src="static/cucumber.png" alt="Cucumber"></label>
+    <label>
+      <input type="checkbox" name="ing" value="Tomato">
+      Tomato <img src="static/tomato.png" alt="Tomato">
+    </label>
+    <label>
+      <input type="checkbox" name="ing" value="Cheese">
+      Cheese <img src="static/cheese.png" alt="Cheese">
+    </label>
+    <label>
+      <input type="checkbox" name="ing" value="Lettuce">
+      Lettuce <img src="static/lettuce.png" alt="Lettuce">
+    </label>
+    <label>
+      <input type="checkbox" name="ing" value="Cucumber">
+      Cucumber <img src="static/cucumber.png" alt="Cucumber">
+    </label>
   </form>
 
   <audio id="confirmSound" src="static/confirm.mp3"></audio>
 
   <button type="button" onclick="submitForm()">Submit</button>
-  <p><a href="index.html" style="color: #ffeb3b; font-weight: bold;">← Back to Map</a></p>
+  <p><a href="index.html">← Back to Map</a></p>
 
   <script>
     function submitForm() {

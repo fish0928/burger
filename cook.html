@@ -4,50 +4,71 @@
   <meta charset="UTF-8">
   <title>Stove Zone – Cook Patty</title>
   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
     body {
       font-family: sans-serif;
-      padding: 20px;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background-image: url('static/A_2D_digital_illustration_features_a_semi-transpar.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: #ffffff;
-      text-shadow: 1px 1px 3px #000000;
-      font-size: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      font-size: 24px;
+      text-align: center;
     }
 
     h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+      font-size: 64px;
+      margin: 0 0 20px;
     }
 
     p {
-      font-size: 24px;
+      font-size: 32px;
+      margin: 10px 0 20px;
     }
 
     button {
-      padding: 12px 24px;
-      margin: 20px;
-      font-size: 24px;
+      padding: 16px 32px;
+      font-size: 32px;
+      margin: 20px 0;
       cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: rgba(0,0,0,0.6);
+      color: #ffeb3b;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: default;
     }
 
     #msg {
-      font-size: 24px;
+      font-size: 32px;
       margin: 20px 0;
     }
 
-    img {
+    #pattyImg {
       display: block;
+      width: 300px;
       margin: 20px auto;
-      width: 200px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
 
     a {
+      margin-top: 30px;
+      font-size: 28px;
       color: #ffeb3b;
-      font-size: 20px;
       text-decoration: none;
       font-weight: bold;
     }
@@ -67,7 +88,7 @@
   <audio id="sndSuccess" src="static/success.mp3"></audio>
   <audio id="sndFail"    src="static/fail.mp3"></audio>
 
-  <p><a href="index.html">← Back to Map</a></p>
+  <a href="index.html">← Back to Map</a>
 
   <script>
     const btn = document.getElementById('actionBtn');

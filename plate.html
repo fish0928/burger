@@ -7,7 +7,12 @@
     body {
       font-family: sans-serif;
       padding: 20px;
-      text-align: center;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background-image: url('static/A_2D_digital_illustration_features_a_semi-transpar.png');
       background-size: cover;
       background-position: center;
@@ -15,48 +20,50 @@
       background-attachment: fixed;
       color: #ffffff;
       text-shadow: 1px 1px 3px #000000;
-      font-size: 20px;
     }
 
     h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+      font-size: 56px;
+      margin-bottom: 20px;
     }
 
-    p {
-      font-size: 24px;
-      margin: 20px 0;
+    #assembleBtn {
+      padding: 16px 32px;
+      font-size: 28px;
+      cursor: pointer;
+      margin-bottom: 30px;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(0,0,0,0.6);
+      color: #ffeb3b;
+    }
+
+    #assembleBtn:disabled {
+      opacity: 0.6;
+      cursor: default;
     }
 
     #burgerImg {
-      display: none; /* Initially hidden */
-      margin: 30px auto;
-      width: 200px;
+      display: none;
+      width: 250px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
-    #doneMsg {
-      display: none; /* Initially hidden */
-      font-size: 28px;
-      margin-top: 15px;
-    }
-
-    button {
-      padding: 12px 24px;
-      font-size: 24px;
-      margin: 20px;
-      cursor: pointer;
+    #completeText {
+      display: none;
+      font-size: 42px;
+      font-weight: bold;
+      text-align: center;
     }
 
     a {
-      margin-top: 20px;
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 20px;
-      text-decoration: none;
+      margin-top: 40px;
+      font-size: 22px;
       color: #ffeb3b;
-      font-weight: bold;
+      text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
@@ -64,23 +71,23 @@
 </head>
 <body>
   <h1>Plating Zone</h1>
-  <p>Click the button to assemble your burger:</p>
 
   <button id="assembleBtn">Assemble Burger</button>
-  <img
-    id="burgerImg"
-    src="static/burger_complete.png"
-    alt="Completed Burger"
-  />
-  <p id="doneMsg">All done! Great job!</p>
 
-  <p><a href="index.html">← Back to Map</a></p>
+  <img id="burgerImg" src="static/burger_complete.png" alt="Completed Burger" />
+  <p id="completeText">All done! Great job!</p>
+
+  <a href="index.html">← Back to Map</a>
 
   <script>
-    document.getElementById('assembleBtn').addEventListener('click', () => {
-      document.getElementById('burgerImg').style.display = 'block';
-      document.getElementById('doneMsg').style.display = 'block';
-      document.getElementById('assembleBtn').disabled = true;
+    const btn = document.getElementById('assembleBtn');
+    const img = document.getElementById('burgerImg');
+    const text = document.getElementById('completeText');
+
+    btn.addEventListener('click', () => {
+      img.style.display = 'block';
+      text.style.display = 'block';
+      btn.disabled = true;
     });
   </script>
 </body>
